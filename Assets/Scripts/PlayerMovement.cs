@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
 
-    private bool isJumping;
-    private bool isGrounded;
+    private bool isJumping_;
+    private bool isGrounded_;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -28,24 +28,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        horizontalMovement_ = Input.GetAxis("Horizontal") * moveSpeed * Time.fixedDeltaTime;
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded_)
         {
-            isJumping = true;
+            isJumping_ = true;
         }
 
         Flip(Rigidbody.velocity.x);
 
         float characteVelocity = Mathf.Abs(Rigidbody.velocity.x);
         animator.SetFloat("Speed", characteVelocity);
+        animator.SetBool("isJumping", isJumping_);
     }
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, CollisionLayers);
-
-        horizontalMovement_ = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-
+        isGrounded_ = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, CollisionLayers);
         MovePlayer(horizontalMovement_);
     }
 
@@ -54,10 +52,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetVelocity = new Vector2(horizontalMovement, Rigidbody.velocity.y);
         Rigidbody.velocity = Vector3.SmoothDamp(Rigidbody.velocity, targetVelocity, ref velocity_, 0.05f);
 
-        if (isJumping)
+        if (isJumping_)
         {
             Rigidbody.AddForce(new Vector2(0f, jumpForce));
-            isJumping = false;
+            isJumping_ = false;
         }
     }
 

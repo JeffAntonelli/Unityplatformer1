@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public string levelToLoad;
+    public string LevelToLoad;
 
     public void StartGame()
     {
-        SceneManager.LoadScene(levelToLoad);
-    }
+        SceneManager.LoadScene(LevelToLoad);
+    }                       
 
     public void Settings()
     {
