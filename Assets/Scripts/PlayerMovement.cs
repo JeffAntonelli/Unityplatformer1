@@ -3,15 +3,17 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;
-    public float jumpForce;
+    [SerializeField] float moveSpeed; //ok.
+    [SerializeField] float jumpForce; //ok.
+    [SerializeField] private AudioSource audioSource_;
+    [SerializeField] private AudioClip sound_;
 
-    private bool isJumping_;
-    private bool isGrounded_;
+    private bool isJumping_; //de base.
+    private bool isGrounded_; //de base.
 
-    public Transform groundCheck;
-    public float groundCheckRadius;
-    public LayerMask CollisionLayers;
+    public Transform groundCheck_; 
+    public float groundCheckRadius_; 
+    public LayerMask CollisionLayers_; 
 
 
     public Rigidbody2D Rigidbody;
@@ -34,13 +36,13 @@ public class PlayerMovement : MonoBehaviour
 
         Flip(Rigidbody.velocity.x);
 
-        float characteVelocity = Mathf.Abs(Rigidbody.velocity.x);
-        animator.SetFloat("Speed", characteVelocity);
+        float characterVelocity = Mathf.Abs(Rigidbody.velocity.x);
+        animator.SetFloat("Speed", characterVelocity);
         animator.SetBool("isJumping", isJumping_);
     }
     void FixedUpdate()
     {
-        isGrounded_ = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, CollisionLayers);
+        isGrounded_ = Physics2D.OverlapCircle(groundCheck_.position, groundCheckRadius_, CollisionLayers_);
         MovePlayer(horizontalMovement_);
     }
 
@@ -51,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isJumping_)
         {
+            audioSource_.PlayOneShot(sound_);
             Rigidbody.AddForce(new Vector2(0f, jumpForce));
             isJumping_ = false;
         }
@@ -72,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(groundCheck_.position, groundCheckRadius_);
     }
 #endif
 }

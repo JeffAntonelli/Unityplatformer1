@@ -2,8 +2,8 @@
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip[] playlist;
-    public AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] playlist;
 
     // Start is called before the first frame update
     void Start()

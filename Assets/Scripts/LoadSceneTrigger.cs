@@ -6,23 +6,26 @@ using UnityEngine.SceneManagement;
 public class LoadSceneTrigger : MonoBehaviour
 {
     public string sceneName;
-    [SerializeField] Animator fadeSystem;
+    [SerializeField] Animator fadeSystem_;
+    [SerializeField] AudioSource audioSource_;
+    [SerializeField] AudioClip sound_;
 
     private void Awake()
     {
-        fadeSystem = GameObject.FindGameObjectWithTag("FadeSystem").GetComponent<Animator>();
+        fadeSystem_ = GameObject.FindGameObjectWithTag("FadeSystem").GetComponent<Animator>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            audioSource_.PlayOneShot(sound_);
             StartCoroutine(loadNextScene());
         }
     }
 
     public IEnumerator loadNextScene()
     {
-        fadeSystem.SetTrigger("FadeIn");
+        fadeSystem_.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(sceneName);
     }

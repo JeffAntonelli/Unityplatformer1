@@ -3,16 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool gameIsPaused = false;
+    private static bool gameIsPaused_ = false;
 
-    public GameObject pauseMenuUI;
+    private GameObject pauseMenuUI_;
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (gameIsPaused)
+            if (gameIsPaused_)
             {
                 Resume();
             }
@@ -26,16 +26,16 @@ public class PauseMenu : MonoBehaviour
 
     void Paused()
     {
-        pauseMenuUI.SetActive(true);
+        pauseMenuUI_.SetActive(true);
         Time.timeScale = 0;
-        gameIsPaused = true;
+        gameIsPaused_ = true;
     }
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
+        pauseMenuUI_.SetActive(false);
         Time.timeScale = 1;
-        gameIsPaused = false;
+        gameIsPaused_ = false;
     }
 
     public void LoadMainMenu()
