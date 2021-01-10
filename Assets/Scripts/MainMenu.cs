@@ -13,6 +13,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(LevelToLoad);
     }
 
+    public void CreditScene()
+    {
+        SceneManager.LoadScene("EndScene");
+    }
+
     public void QuitGame()
     {
         Application.Quit();
