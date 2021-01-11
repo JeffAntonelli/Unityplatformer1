@@ -2,10 +2,10 @@
 
 public class PlayerFollower : MonoBehaviour
 {
-    public GameObject player;
-    public float timeOffset;
-    public Vector3 posOffset;
+    [SerializeField] GameObject player;
+    [SerializeField] Vector3 posOffset;
 
+    private float timeOffset_;
     private Vector3 velocity_;
 
     void Start()
@@ -17,6 +17,6 @@ public class PlayerFollower : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.SmoothDamp(transform.position,
-            player.transform.position + posOffset, ref velocity_, timeOffset);
+            player.transform.position + posOffset, ref velocity_, timeOffset_);
     }
 }

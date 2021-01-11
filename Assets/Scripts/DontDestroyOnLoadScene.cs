@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroyOnLoadScene : MonoBehaviour
 {
-    public GameObject[] objects;
+    private GameObject[] objects;
 
     public static DontDestroyOnLoadScene instance;
 

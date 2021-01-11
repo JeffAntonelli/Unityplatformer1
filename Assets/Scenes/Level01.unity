@@ -66638,7 +66638,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2135269396}
-  timeOffset: 0
   posOffset: {x: 0, y: 0, z: -10}
 --- !u!20 &519420031
 Camera:
@@ -98232,11 +98231,9 @@ MonoBehaviour:
   CollisionLayers_:
     serializedVersion: 2
     m_Bits: 1
-  Rigidbody: {fileID: 2135269400}
-  animator: {fileID: 2135269402}
-  spriteRenderer: {fileID: 2135269397}
-  velocity_: {x: 0, y: 0, z: 0}
-  horizontalMovement_: 0
+  Rigidbody_: {fileID: 2135269400}
+  animator_: {fileID: 2135269402}
+  spriteRenderer_: {fileID: 2135269397}
 --- !u!95 &2135269402
 Animator:
   serializedVersion: 3

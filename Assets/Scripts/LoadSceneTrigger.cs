@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneTrigger : MonoBehaviour
 {
-    public string sceneName;
     [SerializeField] Animator fadeSystem_;
     [SerializeField] AudioSource audioSource_;
     [SerializeField] AudioClip sound_;
+
+    public string sceneName;
 
     private void Awake()
     {

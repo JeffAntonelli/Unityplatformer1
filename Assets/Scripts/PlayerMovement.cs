@@ -3,26 +3,26 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed; //ok.
-    [SerializeField] float jumpForce; //ok.
+    [SerializeField] float moveSpeed;
+    [SerializeField] float jumpForce;
+
     [SerializeField] private AudioSource audioSource_;
     [SerializeField] private AudioClip sound_;
 
-    private bool isJumping_; //de base.
-    private bool isGrounded_; //de base.
+    [SerializeField] Transform groundCheck_; 
+    [SerializeField] float groundCheckRadius_; 
+    [SerializeField] LayerMask CollisionLayers_;
 
-    public Transform groundCheck_; 
-    public float groundCheckRadius_; 
-    public LayerMask CollisionLayers_; 
+    [SerializeField] Rigidbody2D Rigidbody_;
+    [SerializeField] Animator animator_;
+    [SerializeField] SpriteRenderer spriteRenderer_;
 
+    private bool isJumping_;
+    private bool isGrounded_;
 
-    public Rigidbody2D Rigidbody;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
-
-    public Vector3 velocity_ = Vector3.zero;
-    public float horizontalMovement_;
-
+    private Vector3 velocity_ = Vector3.zero;
+    private float horizontalMovement_;
+    private float smoothTime_ = 0.05f;
 
     // Update is called once per frame
     void Update()
@@ -34,11 +34,11 @@ public class PlayerMovement : MonoBehaviour
             isJumping_ = true;
         }
 
-        Flip(Rigidbody.velocity.x);
+        Flip(Rigidbody_.velocity.x);
 
-        float characterVelocity = Mathf.Abs(Rigidbody.velocity.x);
-        animator.SetFloat("Speed", characterVelocity);
-        animator.SetBool("isJumping", isJumping_);
+        float characterVelocity = Mathf.Abs(Rigidbody_.velocity.x);
+        animator_.SetFloat("Speed", characterVelocity);
+        animator_.SetBool("isJumping", isJumping_);
     }
     void FixedUpdate()
     {
@@ -48,13 +48,13 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer(float horizontalMovement)
     {
-        Vector3 targetVelocity = new Vector2(horizontalMovement, Rigidbody.velocity.y);
-        Rigidbody.velocity = Vector3.SmoothDamp(Rigidbody.velocity, targetVelocity, ref velocity_, 0.05f);
+        Vector3 targetVelocity = new Vector2(horizontalMovement, Rigidbody_.velocity.y);
+        Rigidbody_.velocity = Vector3.SmoothDamp(Rigidbody_.velocity, targetVelocity, ref velocity_, smoothTime_);
 
         if (isJumping_)
         {
             audioSource_.PlayOneShot(sound_);
-            Rigidbody.AddForce(new Vector2(0f, jumpForce));
+            Rigidbody_.AddForce(new Vector2(0f, jumpForce));
             isJumping_ = false;
         }
     }
@@ -63,11 +63,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (velocity > 0.1f)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer_.flipX = false;
         }
         else if (velocity < -0.1f)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer_.flipX = true;
         }
     }
 
