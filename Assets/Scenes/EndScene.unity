@@ -259,10 +259,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Le petit extraterrestre \na reussi sa mission.\n\nFelicitation!\n\n\ncours,cours
+  m_Text: "Le petit extraterrestre \na reussi sa mission.\n\nFelicitations!\n\n\ncours,cours
     petit extraterrestre.\nby jeff \"odzol\" Antonelli.\n\n\n-Graphics-\n\nGrafxkid.\n\n-sounds-\n\ncynicmusic.\n\npauliuw.\n\nalexandr
     zhelanov.\n\nlittle robot sound factory\n\ngraphics and sounds are from\n\nopengameart.org.\n\n-font-\n\nrick
-    hoppmann.\n\n-special thanks-\n\nelias from sae.\n\nzef from tuto unity fr.\n\nblackthornprod.\n"
+    hoppmann.\n\n-special thanks-\n\nElias and Fred from sae.\n\nzef from tuto unity
+    fr.\n\nblackthornprod.\n"
 --- !u!222 &430467108
 CanvasRenderer:
   m_ObjectHideFlags: 0
